@@ -14,7 +14,8 @@ export const sighUp=async (req,res) => {
         let token = await genToken(user._id)
         res.cookie("token",token,{
             httpOnly:true,
-            secure:process.env.NODE_ENVIRONMENT = "production",
+            
+            secure: true, 
             sameSite: "strict",
             maxAge: 7 * 24 * 60 * 60 * 1000
 
@@ -32,7 +33,7 @@ export const login = async (req,res) => {
         let {email,password} = req.body
         let user= await User.findOne({email}).populate("listing","title image1 image2 image3 description rent category city landMark")
         if(!user){
-            return res.status(400).json({message:"User is not exist"})
+            return res.status(400).json({message:"User does not exist"})
         }
         let isMatch = await bcrypt.compare(password,user.password)
         if(!isMatch){
@@ -41,7 +42,9 @@ export const login = async (req,res) => {
         let token = await genToken(user._id)
         res.cookie("token",token,{
             httpOnly:true,
-            secure:process.env.NODE_ENVIRONMENT = "production",
+            // secure:process.env.NODE_ENVIRONMENT = "production",
+            secure: true,
+
             sameSite: "strict",
             maxAge: 7 * 24 * 60 * 60 * 1000
 
