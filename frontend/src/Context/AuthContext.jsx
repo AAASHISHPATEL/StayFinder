@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react'
 export const authDataContext = createContext()
 function AuthContext({children}) {
-    const serverUrl = "http://localhost:8000"
+    const serverUrl = import.meta.env.VITE_SERVER_URL 
 
     let [loading,setLoading]=useState(false)
 
