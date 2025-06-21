@@ -1,13 +1,19 @@
-import multer from "multer"
+import multer from "multer";
+import path from "path";
+import { v4 as uuidv4 } from "uuid";
 
-let storage = multer.diskStorage({
-    destination:(req,file,cb)=>{
-        cb(null,"./public")
-    },
-    filename:(req,file,cb)=>{
-        cb(null,file.originalname)
-    }
-})
-const upload = multer({storage})
+// Render allows writing only to /tmp
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "/tmp"); //  Safe for Render
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    const uniqueName = uuidv4() + ext;
+    cb(null, uniqueName);
+  },
+});
 
-export default upload
+const upload = multer({ storage });
+
+export default upload;

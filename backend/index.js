@@ -8,15 +8,16 @@ import cors from "cors"
 import userRouter from "./routes/user.route.js"
 import listingRouter from "./routes/listing.route.js"
 import bookingRouter from "./routes/booking.route.js"
+import path from "path";
 let port = process.env.PORT || 6000
 
 let app = express()
+app.use("/public", express.static(path.join(process.cwd(), "public")));
 app.use(express.json())
 app.use(cookieParser())
 app.use(
   cors({
-    // origin: "https://stayfinder-1-eotk.onrender.com",
-    // origin: "http://localhost:5173",
+    
     origin: process.env.CLIENT_URL, 
     credentials: true, // Allow cookies to be sent with requests
     methods: ["GET", "POST", "PUT", "DELETE"],

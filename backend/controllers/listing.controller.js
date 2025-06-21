@@ -12,6 +12,10 @@ export const addListing = async (req,res) => {
         let image2 = await uploadOnCloudinary(req.files.image2[0].path)
         let image3 = await uploadOnCloudinary(req.files.image3[0].path)
 
+        if (!image1 || !image2 || !image3) {
+          return res.status(500).json({ message: "Image upload failed" });
+        }
+
         let listing = await Listing.create({
             title,
             description,
