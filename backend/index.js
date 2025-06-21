@@ -13,14 +13,16 @@ let port = process.env.PORT || 6000
 let app = express()
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors(
-    {
-        origin: "https://stayfinder-1-eotk.onrender.com",
-        credentials: true, // Allow cookies to be sent with requests
-        methods: ["GET", "POST", "PUT", "DELETE"],
-        allowedHeaders: ["Content-Type", "Authorization"]
-    }
-))
+app.use(
+  cors({
+    // origin: "https://stayfinder-1-eotk.onrender.com",
+    // origin: "http://localhost:5173",
+    origin: process.env.CLIENT_URL, 
+    credentials: true, // Allow cookies to be sent with requests
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 app.use("/api/auth", authRouter )
 app.use("/api/user", userRouter )
