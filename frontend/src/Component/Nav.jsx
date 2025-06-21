@@ -25,6 +25,7 @@ function Nav() {
     let [cate,setCate]= useState()
     let {listingData,setListingData,setNewListData,newListData,searchData,handleSearch,handleViewCard}=useContext(listingDataContext)
     let [input,setInput]=useState("")
+    
     const handleLogOut = async () => {
         try {
             let result = await axios.post( serverUrl + "/api/auth/logout", {withCredentials:true})

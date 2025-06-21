@@ -15,7 +15,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(cors(
     {
-        origin: process.env.CLIENT_URL,
+        origin: "https://stayfinder-1-eotk.onrender.com",
         credentials: true, // Allow cookies to be sent with requests
         methods: ["GET", "POST", "PUT", "DELETE"],
         allowedHeaders: ["Content-Type", "Authorization"]

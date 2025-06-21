@@ -44,7 +44,7 @@ function Card({ title, landMark, image1, image2, image3, rent, city, id, ratings
                     <span className='flex items-center justify-center gap-[5px]'><FaStar className='text-[#eb6262]' />{ratings}</span>
                 </div>
                 <span className='text-[15px] w-[80%] text-ellipsis overflow-hidden text-nowrap'>{title.toUpperCase()} </span>
-                <span className='text-[16px] font-semibold text-[#986b6b]'>₹{rent}/day</span>
+                <span className='text-[16px] font-semibold text-[#986b6b]'>₹{rent}/night</span>
             </div>
 
         </div>
