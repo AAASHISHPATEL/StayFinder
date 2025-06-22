@@ -27,16 +27,20 @@ function Nav() {
     let [input,setInput]=useState("")
     
     const handleLogOut = async () => {
-        try {
-            let result = await axios.post( serverUrl + "/api/auth/logout", {withCredentials:true})
-            setUserData(null)
+      try {
+        let result = await axios.post(
+          serverUrl + "/api/auth/logout",
+          {}, // <-- empty body
+          { withCredentials: true } // <-- correct config
+        );
 
-            console.log(result)
-        } catch (error) {
-            console.log(error)
-        }
-        
-    }
+        setUserData(null); // or any other local state reset
+        console.log(result.data);
+      } catch (error) {
+        console.log("Logout error:", error);
+      }
+    };
+
     const handleCategory = (category)=>{
        setCate(category)
        if(category=="trending"){

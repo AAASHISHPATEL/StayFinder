@@ -17,7 +17,8 @@ export const sighUp=async (req,res) => {
             
             secure: true, 
             sameSite: "None",
-            maxAge: 7 * 24 * 60 * 60 * 1000
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+            path: "/"
 
 
         })
@@ -42,11 +43,12 @@ export const login = async (req,res) => {
         let token = await genToken(user._id)
         res.cookie("token",token,{
             httpOnly:true,
-            // secure:process.env.NODE_ENVIRONMENT = "production",
+            
             secure: true,
 
             sameSite: "None",
-            maxAge: 7 * 24 * 60 * 60 * 1000
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+            path: "/"
 
 
         })
@@ -63,6 +65,7 @@ export const logOut = async (req, res) => {
       httpOnly: true,
       secure: true,
       sameSite: "None",
+      path: "/",
     });
     return res.status(200).json({ message: "Logout Successfully" });
   } catch (error) {

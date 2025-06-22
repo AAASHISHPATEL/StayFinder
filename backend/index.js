@@ -22,7 +22,7 @@ app.use(
     credentials: true, // Allow cookies to be sent with requests
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
-  })
+  }) 
 );
 
 app.use("/api/auth", authRouter )
